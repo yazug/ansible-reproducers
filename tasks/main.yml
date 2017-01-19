@@ -1,11 +1,16 @@
 ---
 # Reproducer for include on conditional bool
 
-- test:
-  - debug: msg="*** Generating Build Artifacts ***"
+- name: test
+  command: >
+    echo "Test"
 
-  - debug: msg="*** publish ***"
-    when: artib_publish|bool
+- name: test-conditional
+  command: >
+    echo "Test"
+  when: artib_publish|bool
+
+
 
 # Optionally publish images
 - include: publish.yml

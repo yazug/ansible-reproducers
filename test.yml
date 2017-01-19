@@ -1,0 +1,28 @@
+- hosts: localhost
+  vars:
+    artib_publish: true
+  tasks:
+  - name: test_echo
+    command: echo "Test"
+    notify:
+      - test-foo
+
+  - name: test_echo_when
+    command: echo "Test"
+    notify:
+      - test-foo
+    when: artib_publish|bool
+
+  - name: test_echo_when_not
+    command: echo "Test"
+    notify:
+      - test-foo
+    when: not artib_publish|bool
+
+  - name: include-test
+    include: tasks/main.yml
+
+  handlers:
+  - name: test-foo
+    command: echo "Foo"
+

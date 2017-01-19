@@ -1,6 +1,19 @@
 ---
 # second level include with dummy task
 
-- name: test-something
-  - debug: msg="*** Publish Build Artifacts ***"
+- name: pub-test-something
+  command: echo "Test Publish"
+
+- name: pub-test-with-other-conditional
+  command: echo "Test Pub Other Conditional"
+  when: artib_do_something_else|bool
+
+- name: pub-install scp
+  yum:
+    name: openssh-clients
+    state: present
+  become: true
+  when: artib_do_local_install|bool
+
+
 
