@@ -1,0 +1,6 @@
+---
+# second level include with dummy task
+
+- name: test-something
+  - debug: msg="*** Publish Build Artifacts ***"
+

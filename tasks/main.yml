@@ -1,0 +1,13 @@
+---
+# Reproducer for include on conditional bool
+
+- test:
+  - debug: msg="*** Generating Build Artifacts ***"
+
+  - debug: msg="*** publish ***"
+    when: artib_publish|bool
+
+# Optionally publish images
+- include: publish.yml
+  when: artib_publish|bool
+
