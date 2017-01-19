@@ -1,0 +1,21 @@
+- hosts: localhost
+
+  tasks:
+  - name: test_echo_when
+    command: echo "Test"
+    notify:
+      - test-foo
+    when: artib_publish|bool
+
+  - name: test_echo_when_not
+    command: echo "Test"
+    notify:
+      - test-foo-not
+    when: not artib_publish|bool
+
+  handlers:
+  - name: test-foo
+    command: echo "Foo"
+
+  - name: test-foo-not
+    command: echo "Foo"
